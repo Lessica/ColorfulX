@@ -23,7 +23,7 @@ public class MulticolorGradientView: MetalView {
         guard let library = try? device.makeDefaultLibrary(bundle: Bundle.module),
               let computeProgram = library.makeFunction(name: "gradient"),
               let computePipelineState = try? device.makeComputePipelineState(function: computeProgram)
-        else { fatalError("Metal program filed to compile") }
+        else { fatalError("Metal program failed to compile") }
         self.computePipelineState = computePipelineState
     }
 
