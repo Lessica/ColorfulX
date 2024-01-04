@@ -15,15 +15,22 @@ private let SPRING_CONFIG = SpringInterpolation.Configuration(
 )
 private let SPRING_ENGINE = SpringInterpolation2D(SPRING_CONFIG)
 
+@objc(ColorfulView)
 public class AnimatedMulticolorGradientView: MulticolorGradientView {
+    @objc
     public private(set) var lastUpdate = Date()
     public private(set) var colorElements: [Speckle]
 
+    @objc
     public var speed: Double = 1.0
+    @objc
     public var noise: Double = 0
+    @objc
     public var transitionDuration: TimeInterval = 5
 
+    @objc
     public var frameLimit: Int = 0
+    @objc
     public private(set) var lastRender: Date = .init(timeIntervalSince1970: 0)
 
     override public init() {
@@ -63,6 +70,11 @@ public class AnimatedMulticolorGradientView: MulticolorGradientView {
             read.transitionProgress = interpolationEnabled ? 0 : 1
             colorElements[idx] = read
         }
+    }
+
+    @objc
+    public func setCoreColors(_ colors: [CoreColor], interpolationEnabled: Bool = true) {
+        setColors(colors.map({ RGBColor($0) }), interpolationEnabled: interpolationEnabled)
     }
 
     private func updateRenderParameters() {
