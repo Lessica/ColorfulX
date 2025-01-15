@@ -44,7 +44,7 @@ import Foundation
                 frame.height > 0,
                 alphaValue > 0,
                 !isHidden,
-            ].allSatisfy(\.self)
+            ].allSatisfy { $0 }
         }
 
         override open var frame: NSRect {
